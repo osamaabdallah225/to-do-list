@@ -262,23 +262,6 @@ main.addEventListener("click", (eo) => {
             main.prepend(eo.target.parentElement);
             eo.target.style.color = "yellow";
             // eo.target.parentElement.querySelector("span").innerHTML = 1;
-
-            // تحديث الـ localStorage مع الملاحظة المعدلة
-
-            const inputElement = eo.target.parentElement.querySelector(".input-enter");
-            const noteKeyUnique = eo.target.parentElement.id; // الحصول على الـ ID الخاص بالملاحظة
-            const updatedNoteContent = `<div style="position: relative;" id="${noteKeyUnique}">
-            <input type="text" value="${inputElement.value.trim()}" disabled="" class="input-enter" title="${inputElement.value.trim()}">
-           <i class="fa-regular fa-face-frown" style="display: none;"></i>
-            <i class="fa-solid fa-trash-can"></i>
-            <i class="fa-solid fa-pen" id="edit"></i> 
-            <i class="fa-solid fa-star clicked" style="color: yellow;"></i>
-            <i class="fa-regular fa-copy"></i>
-             <i id="save" class="fa-solid fa-floppy-disk"></i> 
-             <i class="fa-solid fa-face-smile" style="display: block;"></i>
-            </div>`;
-            // تحديث الـ localStorage مع الملاحظة المعدلة
-            updateNote(noteKeyUnique, updatedNoteContent);
         } else {
             // إذا تم إزالة الكلاس "clicked"
             eo.target.style.color = "";

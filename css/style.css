@@ -150,7 +150,7 @@ i#up {
 .fixed {
     bottom: 0px;
     right: 0%;
-    left: 0%;
+    left: -7%;
     position: fixed;
 }
 
@@ -197,7 +197,7 @@ i#up {
         font-size: 35px; 
     }
     .main2 input {
-        width: 95%;
+        width: 82%;
         font-size: 16px;
     }
     i.fa-upload {
@@ -210,6 +210,13 @@ i#up {
     .main2 {
         margin-right: 29px;
      }
+     i#up {
+        opacity: 0 !important;
+    }
+    .main2 {
+        width: 10%;
+    }
+    
     }
 
     
