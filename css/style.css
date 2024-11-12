@@ -1,0 +1,215 @@
+
+body {  
+    background-color: #34325E;
+    margin-top:50px;
+    
+    
+}
+
+* {
+    -webkit-tap-highlight-color: transparent; /* لأجهزة اللمس */
+    box-sizing: border-box;
+    text-align: center;
+   
+    color: white;
+}
+
+
+*::selection {
+    background-color: #bec1d3;
+    color: white;
+}
+
+
+
+.content h1 {
+    font-size: 60px;
+
+}
+ .content p {
+    font-size: 30px;
+ }
+
+ .main input {
+    border-radius: 6px;
+    font-size: 20px;
+    direction: rtl;
+    outline: none;
+    border: none;
+    background-color: #52587E;
+    margin-bottom: 20px;
+    width: 75%;
+    min-height: 55px;
+    box-shadow: 0px 2px 0px white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px 129px 0px 172px;
+   
+   
+ }
+ .main2 input {
+    border-radius: 6px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    width: 60%;
+    height: 40px;
+    direction: rtl;
+  
+   
+
+
+ }
+
+ .main2 {
+    margin-top: 120px;
+    position: relative;
+ }
+
+ /* ::placeholder {
+    color: rgb(194, 34, 34);
+ } */
+  .main {
+    position: relative !important;
+
+  }
+
+ i {
+font-size: 20px;
+position: absolute;
+
+ }
+
+ 
+ 
+ i.fa-pen {
+    top: 20px; /* تأكد من تحديد الموقع الرأسي أيضاً */
+    left: 15%; /* موقع النجمة */
+}
+ i.fa-floppy-disk {
+    top: 20px; /* تأكد من تحديد الموقع الرأسي أيضاً */
+    left: 15%; /* موقع النجمة */
+    display: none;
+}
+ i.fa-star {
+    top: 20px;
+    left: 18%;
+    margin-left: 8px !important; 
+   
+}
+ i.fa-copy {
+    top: 20px;
+    left: 21%; 
+    margin-left: 20px;
+   
+}
+
+
+
+i.fa-trash-can {
+    top: 18px;
+    right: 15%; /* موقع الوجه */
+    margin-right: 45px !important ;
+}
+
+
+i.fa-face-frown {
+    top: 18px;
+    right: 15%; /* موقع الوجه */
+    border-radius: 50%;
+    color: rgb(245, 221, 3);
+}
+i.fa-face-smile {
+    top: 18px;
+    right: 15%; /* موقع الوجه */
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    display: none;
+    font-size: 20px;
+   
+}
+i.fa-upload {
+    bottom: 8px;
+    font-size: 32px;
+    margin-left: 27px !important;
+  
+}
+i#up {
+    right: 17%;
+    bottom: 10px;
+    font-size: 33px;
+    color: aquamarine;
+    position: fixed;
+    bottom: 45px;
+    right: 64px;
+    transition: opacity .5s ease;
+    opacity: 0;
+}
+
+
+.fixed {
+    bottom: 0px;
+    right: 0%;
+    left: 0%;
+    position: fixed;
+}
+
+
+.finish {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    
+}
+
+.copy-message {
+    display: none;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    transition: .1s;
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    left: 0%;
+    background-color: rgb(9, 70, 12);
+    width: 100%;
+}
+
+
+@media (max-width: 600px) {
+    .fa-copy, .fa-star, .fa-pen {
+       display: none !important;
+    
+    }
+    .main input {
+        padding: 0px 35px 0px 35px;
+        width: 97%;
+        font-size: 16px;
+     }
+
+     i.fa-face-frown, i.fa-face-smile {
+        right: 4%; /* موقع الوجه */ 
+    }
+    i.fa-trash-can {
+        right: 92%; /* موقع الوجه */
+        margin-right: 0px !important;
+    }
+    .content h1 {
+        font-size: 35px; 
+    }
+    .main2 input {
+        width: 95%;
+        font-size: 16px;
+    }
+    i.fa-upload {
+        font-size: 29px;
+        margin-left: 10px !important;
+    }
+    body {
+        margin-top: 0px;
+    }
+    .main2 {
+        margin-right: 29px;
+     }
+    }
+
+    
