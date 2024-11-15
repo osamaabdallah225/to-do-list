@@ -33,7 +33,7 @@ const post = () => {
         // html code of note
         const noteHTML = ` <div class="main" >
         <div style="position: relative;" id="${noteKey}">
-            <input type="text" value="${input.value.trim()}" disabled  class="input-enter" title="${input.value.trim()}">
+            <input type="text" value="${input.value.trim()}" readonly  class="input-enter" title="${input.value.trim()}">
             <i class="fa-regular fa-face-frown"></i>
             <i class="fa-solid fa-trash-can"></i>
             <i class="fa-solid fa-pen" id="edit"></i> 
@@ -57,18 +57,22 @@ const post = () => {
 // stop
 
 
-// استرجاع الملاحظات عند تحميل الصفحة
 window.addEventListener("load", () => {
     // استرجاع الملاحظات من localStorage
     for (let i = 0; i < localStorage.length; i++) {
         const noteKey = localStorage.key(i); // الحصول على المفتاح الفريد
         const noteContent = localStorage.getItem(noteKey);
-        if (noteContent) {
-            main.innerHTML += noteContent; // إضافة الملاحظة إلى الـ HTML
+
+        // تحقق إذا كان المفتاح يتبع معيارًا معينًا
+        if (noteKey && noteKey.startsWith("note-")) { // استرجاع الملاحظات التي يبدأ مفتاحها بـ "note_"
+            if (noteContent) {
+                main.innerHTML += noteContent; // إضافة الملاحظة إلى الـ HTML
+            }
         }
     }
     input.focus();
 });
+
 
 
 upload.addEventListener("click", (eo) => {
@@ -96,8 +100,8 @@ main.addEventListener("click", (eo) => {
         // كه يا معلم انت مسكت عنصر الادخال من خلال عنصر التعديل وبعدين الاب وبعدين هاتلي العنصر 
         const inputDisable1 = eo.target.parentElement.querySelector(".input-enter");
 
-        // إزالة خاصية "disabled" من الحقل المدخل ليصبح قابل للتحرير
-        inputDisable1.removeAttribute("disabled");
+        // إزالة خاصية "readonly" من الحقل المدخل ليصبح قابل للتحرير
+        inputDisable1.removeAttribute("readonly");
 
         // تفعيل التركيز على الحقل المدخل بحيث يمكن للمستخدم الكتابة فيه
         inputDisable1.focus();
@@ -128,7 +132,7 @@ const editInpute = (eo) => {
         }
         else {
             // اختيار حقل الإدخال الذي يحتوي على الفئة "input-enter" داخل العنصر الأب للعنصر الذي تم النقر عليه
-            eo.target.parentElement.querySelector(".input-enter").setAttribute("disabled", "disabled");
+            eo.target.parentElement.querySelector(".input-enter").setAttribute("readonly", "readonly");
             eo.target.style.display = "none";
 
             eo.target.parentElement.querySelector(".fa-pen").style.display = "block";
@@ -168,7 +172,7 @@ main.addEventListener("click", (eo) => {
         const inputElement = eo.target.parentElement.querySelector(".input-enter");
         const noteKeyUnique = eo.target.parentElement.id; // الحصول على الـ ID الخاص بالملاحظة
         const updatedNoteContent = `<div style="position: relative;" id="${noteKeyUnique}">
-            <input type="text" value="${inputElement.value.trim()}" disabled="" class="input-enter finish" title="${inputElement.value.trim()}" style="background-color: green;">
+            <input type="text" value="${inputElement.value.trim()}" readonly="" class="input-enter finish" title="${inputElement.value.trim()}" style="background-color: green;">
             <i class="fa-regular fa-face-frown" style="display: none;"></i>
             <i class="fa-solid fa-trash-can"></i>
             <i class="fa-solid fa-pen" id="edit"></i> 
@@ -196,7 +200,7 @@ main.addEventListener("click", (eo) => {
         const inputElement = eo.target.parentElement.querySelector(".input-enter");
         const noteKeyUnique = eo.target.parentElement.id; // الحصول على الـ ID الخاص بالملاحظة
         const updatedNoteContent = `<div style="position: relative;" id="${noteKeyUnique}">
-            <input type="text" value="${inputElement.value.trim()}" disabled="" class="input-enter " title="${inputElement.value.trim()}" >
+            <input type="text" value="${inputElement.value.trim()}" readonly="" class="input-enter " title="${inputElement.value.trim()}" >
               <i class="fa-regular fa-face-frown"></i>
             <i class="fa-solid fa-trash-can"></i>
             <i class="fa-solid fa-pen" id="edit"></i> 
@@ -213,19 +217,19 @@ main.addEventListener("click", (eo) => {
 
 })
 
-main.addEventListener("input", (eo) => {
-    if (eo.target.classList.contains("input-enter")) {
+// main.addEventListener("input", (eo) => {
+//     if (eo.target.classList.contains("input-enter")) {
 
-        // التحقق مما إذا كان النص أطول من عرض حقل الإدخال
-        if (eo.target.scrollWidth > eo.target.clientWidth) {
-            // إذا تجاوز النص عرض حقل الإدخال، يتم تعيينه كعنوان (tooltip)
-            eo.target.title = eo.target.value;
-        } else {
-            // إذا لم يتجاوز النص عرض حقل الإدخال، يتم إلغاء العنوان
-            eo.target.title = "";
-        }
-    }
-});
+//         // التحقق مما إذا كان النص أطول من عرض حقل الإدخال
+//         if (eo.target.scrollWidth > eo.target.clientWidth) {
+//             // إذا تجاوز النص عرض حقل الإدخال، يتم تعيينه كعنوان (tooltip)
+//             eo.target.title = eo.target.value;
+//         } else {
+//             // إذا لم يتجاوز النص عرض حقل الإدخال، يتم إلغاء العنوان
+//             eo.target.title = "";
+//         }
+//     }
+// });
 
 
 // إظهار السهم عند التمرير لأسفل وإخفاؤه عند العودة إلى الأعلى
@@ -247,7 +251,7 @@ scrollButton.addEventListener("click", function () {
 window.addEventListener("scroll", () => {
     if (window.scrollY > 1) {
         main2.classList.add("fixed");
-        main2.removeAttribute("tagname", "h2");
+       
     }
 })
 
